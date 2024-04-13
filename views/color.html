@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Video Player with Logo Upload</title>
+  <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet">
+  <script src="https://vjs.zencdn.net/7.14.3/video.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-quality-levels/dist/videojs-contrib-quality-levels.js"></script>
+  <style>
+    /* Custom logo style */
+    #logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Video Player -->
+  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264">
+    <source src="../public/saas.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Logo upload form -->
+  <form id="logo-upload-form">
+    <input type="file" accept="image/*" id="logo-input">
+    <button type="submit">Upload Logo</button>
+  </form>
+
+  <!-- Player Color Picker -->
+  <label for="player-color">Player Color:</label>
+  <input type="color" id="player-color">
+
+  <script>
+    document.getElementById('logo-upload-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var logoFile = document.getElementById('logo-input').files[0];
+      if (logoFile) {
+        uploadLogo(logoFile);
+      }
+    });
+
+    function uploadLogo(logoFile, position) {
+      var logoImg = document.createElement('img');
+      logoImg.id = 'logo';
+      logoImg.src = URL.createObjectURL(logoFile);
+      document.body.appendChild(logoImg);
+    }
+
+    // Initialize Video.js
+    var player = videojs('my-video');
+
+    // Player Color Picker
+    var playerColorInput = document.getElementById('player-color');
+    playerColorInput.addEventListener('change', function() {
+      var playerColor = playerColorInput.value;
+      document.querySelector('.video-js').style.color = playerColor;
+      // Check brightness and adjust text color
+      var textColor = getTextColor(playerColor);
+      document.querySelector('.vjs-control-text').style.color = textColor;
+    });
+
+    // Function to determine text color based on background brightness
+    function getTextColor(backgroundColor) {
+      var r = parseInt(backgroundColor.substring(1, 3), 16);
+      var g = parseInt(backgroundColor.substring(3, 5), 16);
+      var b = parseInt(backgroundColor.substring(5, 7), 16);
+      var brightness = Math.round(((r * 299) + (g * 587) + (b * 114)) / 1000);
+      return (brightness > 125) ? '#000000' : '#ffffff';
+    }
+  </script>
+   <script>
+    var player = videojs('my-video');
+    player.qualityLevels();
+    player.play();
+  </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+.sidebar {
+  width: 250px;
+}
+.list-group-item {
+  border: none;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: none;
+  outline: none;
+}
+.navbar-nav{
+margin-right: 100px;
+}
+
+
+.main-body {
+display: flex;
+flex-direction: row;
+height: calc(100vh - 114px);
+
+}
+.main-body .main {
+padding: 15px;
+width: 100%;
+}
+
+.main {
+overflow: auto;
+}
+
+#videos {
+display:  flex;
+flex-wrap:  wrap;
+gap: 15px;
+height: calc(100vh - 114px);
+cursor: pointer;
+}
+
+.card {
+position: relative;
+height: 300px;
+flex: 0 0 calc(33.333% - 15px);
+border: 1px solid #ccc;
+-webkit-box-shadow: 0px 0px 38px -16px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 38px -16px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 38px -16px rgba(0,0,0,0.75);
+}
+
+.card button {
+text-align: center;
+font-size: medium;
+font-family: "Protest Strike", sans-serif;
+font-weight: 150;
+font-style: normal;
+}
+
+.card img {
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+
+.overlay {
+display: none;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: rgba(0, 0, 0, 0);
+transition: all 0.5s ease;
+}
+
+.material-symbols-outlined {
+font-size: 3rem;
+font-variation-settings:
+'FILL' 0,
+'wght' 700,
+'GRAD' 0,
+'opsz' 48
+}
+
+.explore-tags{
+display: none;
+}

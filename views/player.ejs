@@ -16,7 +16,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
- 
+    <script>
+      function disableRightClick() {
+          var specificDiv = document.getElementById('videoPlayer');
+          specificDiv.addEventListener('contextmenu', function(e) {
+              e.preventDefault();
+          });
+      }
+      document.addEventListener('DOMContentLoaded', disableRightClick);
+  </script>
 </head>
 <style>
   

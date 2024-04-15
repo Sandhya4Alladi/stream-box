@@ -72,7 +72,7 @@ export const uploadVideo = async (req, res) => {
       });
     });
 
-    // await upscaleVideo(videobucketName, videoObjectKey);
+
     
     const imagebucketname = process.env.IMAGE_BUCKET;
     const imageName = (req.files.imageFile[0].originalname).replace(/ /g, "");
@@ -228,67 +228,3 @@ export async function deleteS3Object(bucketName, objectKey){
 }
 
 
-// "s3://streambox-videos/660f98077ac35193d83b7385-b4a7c029-c9df-4958-8084-0aaf7e62fa79-infosec-1.mp4"
-
-          // const mediaConvert = new AWS.MediaConvert();
-          
-          // export const upscaleVideo = async (bucketName, objectKey) => {
-          //   try {
-          //     const params = {
-          //       Role: 'arn:aws:iam::058264369877:role/mediaconvert',
-          //       Settings: {
-          //         Inputs: [{
-          //           FileInput: "s3://streambox-videos/660f98077ac35193d83b7385-b4a7c029-c9df-4958-8084-0aaf7e62fa79-infosec-1.mp4"
-          //         }],
-          //         OutputGroups: [{
-          //           Name: 'File Group',
-          //           OutputGroupSettings: {
-          //             Type: 'FILE_GROUP_SETTINGS',
-          //             FileGroupSettings: {
-          //               Destination: `s3://${process.env.UPSCALED_VIDEO_BUCKET}/`
-          //             }
-          //           },
-          //           Outputs: [{
-          //             Extension: 'mp4',
-          //             VideoDescription: {
-          //               Width: 640,
-          //               Height: 360,
-          //               ScalingBehavior: 'DEFAULT',
-          //               CodecSettings: {
-          //                 Codec: 'H.264'
-          //               }
-          //             },
-          //             AudioDescriptions: [{
-          //               AudioTypeControl: 'FOLLOW_INPUT',
-          //               CodecSettings: {
-          //                 Codec: 'AAC',
-          //               }
-          //             }]
-          //           }]
-          //         }]
-          //       }
-          //     };
-              
-          
-          //     const { Job } = await mediaConvert.createJob(params).promise();
-          //     console.log("Job created:", Job.Id);
-          
-          //     const interval = setInterval(async () => {
-          //       const { Job } = await mediaConvert.getJob({ Id: Job.Id }).promise();
-          //       const status = Job.Status;
-          //       console.log(`Transcoding job status: ${status}`);
-          //       if (status === 'COMPLETE') {
-          //         clearInterval(interval);
-          //         console.log('Transcoding job completed');
-          //       } else if (status === 'ERROR') {
-          //         clearInterval(interval);
-          //         console.error('Transcoding job failed');
-          //       }
-          //     }, 5000);
-          
-          //     console.log('Transcoding job started');
-          //   } catch (err) {
-          //     console.error('Error transcoding video:', err);
-          //   }
-          // };
-          

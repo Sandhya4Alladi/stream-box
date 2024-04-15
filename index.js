@@ -20,12 +20,7 @@ import session from 'express-session';
 
 const app = express();
 
-// app.use((req, res, next) => {
-//   res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-//   res.header('Pragma', 'no-cache');
-//   res.header('Expires', 0);
-//   next();
-// });
+
 
 app.use(session({
   secret: process.env.SESSION_SECRET_KEY, 
@@ -61,6 +56,10 @@ app.get("/embed", (req,res) => {
   res.render("embed", {key: req.query.key})
 });
 
+app.get("/video-quality", verifyToken, (req,res) => {
+  res.render("video-quality");
+});
+
 app.get("/home",  verifyToken, getHomeCards)
 
 const connect = () => {
@@ -73,6 +72,7 @@ const connect = () => {
       throw err;
     });
 }
+
 
 
 
